@@ -1,0 +1,17 @@
+target
+.idea
+doc
+test
+.gitignore
+.hgignore
+.lein-failures
+.nrepl-port
+rango.iml
+CHANGELOG.md
+Dockerfile
+docker-compose.yml
+LICENSE
+README.md
+.git
+.github
+/resources

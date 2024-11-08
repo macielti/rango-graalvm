@@ -1,0 +1,7 @@
+services:
+  rango:
+    image: sha256:c3ccde81ffd65a0a4b18e329332cd2321157fe195db51a2f30c05bdad473621f
+    container_name: rango
+    restart: unless-stopped
+    volumes:
+      - ./resources/config.edn:/app/resources/config.edn

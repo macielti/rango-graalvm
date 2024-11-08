@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: hara/core.version:3.0.12">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/hara/core.version/3.0.12/core.version-3.0.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
