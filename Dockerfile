@@ -16,17 +16,16 @@ RUN lein uberjar
 RUN native-image \
       --no-fallback \
       --report-unsupported-elements-at-runtime \
-      --initialize-at-run-time=org.apache.http.impl.auth.NTLMEngineImpl,io.prometheus.client.Striped64 \
-      --features=clj_easy.graal_build_time.InitClojureClasses  \
-      --initialize-at-build-time=io.prometheus.client.Collector \
-      --initialize-at-build-time=org.pg.Pool \
-      --initialize-at-build-time=org.bouncycastle.asn1.nist.NISTObjectIdentifiers,org.bouncycastle.asn1.x509.X509ObjectIdentifiers \
+      --trace-class-initialization=ch.qos.logback.core.status.InfoStatus \
+      --initialize-at-run-time=io.prometheus,org.pg,org.bouncycastle,org.slf4j,io.opentelemetry,org.eclipse.jetty.server,org.eclipse.jetty.util,ch.qos.logback,org.eclipse.jetty.http,org.eclipse.jetty.http2,org.eclipse.jetty.server.ServerConnector,org.apache.http.impl.auth.NTLMEngineImpl,io.prometheus.client.Striped64 \
+      --features=clj_easy.graal_build_time.InitClojureClasses \
       --enable-url-protocols=http,https \
       -Dio.pedestal.log.defaultMetricsRecorder=nil \
       -jar ./target/rango-graalvm-0.1.0-SNAPSHOT-standalone.jar \
       -H:Name=rango \
       -H:+ReportExceptionStackTraces \
       -H:+StaticExecutableWithDynamicLibC \
+      -H:ReflectionConfigurationFiles=reflect-config.json \
       -H:CCompilerOption=-pipe
 
 FROM gcr.io/distroless/base:latest

@@ -10,13 +10,16 @@
   :exclusions [amazonica]
 
   :dependencies [[org.clojure/clojure "1.12.0"]
-                 [net.clojars.macielti/common-clj "36.71.70"]
-                 [net.clojars.macielti/porteiro-component "0.2.1"]
+                 [net.clojars.macielti/common-clj "37.71.70"]
+                 [io.pedestal/pedestal.service "0.7.2"]
+                 [io.pedestal/pedestal.jetty "0.7.2"]
+                 [io.pedestal/pedestal.interceptor "0.7.2"]
+                 [io.pedestal/pedestal.error "0.7.2"]
+                 [net.clojars.macielti/porteiro-component "0.3.1"]
                  [net.clojars.macielti/postgresql-component "2.2.2"]
-                 [com.github.clj-easy/graal-build-time "1.0.5"]]
+                 [com.github.clj-easy/graal-build-time "1.0.5"]
+                 [ch.qos.logback/logback-classic "1.2.11"]]
 
   :resource-paths ["resources"]
 
-  :aot :all
-
-  :main rango_graalvm.components)
+  :main rango-graalvm.components)

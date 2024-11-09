@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: net.clojars.macielti/service-component:1.3.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/clojars/macielti/service-component/1.3.0/service-component-1.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

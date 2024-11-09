@@ -1,7 +1,9 @@
 services:
   rango:
-    image: sha256:0e10c90aa77b0e7ee6691d42dfaf60fddb50374f5f95a08597bce2096f8d5ad8
+    image: sha256:7b1eab80779da0631f3ecd40ba7c05f5ec68103264164a8b15f897d5a0fca277
     container_name: rango
     restart: unless-stopped
     volumes:
       - ./resources/config.edn:/app/resources/config.edn
+    ports:
+      - "8080:8080"
