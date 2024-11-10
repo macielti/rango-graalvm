@@ -7,5 +7,9 @@
     "allPublicMethods": true,
     "allDeclaredClasses": true,
     "allPublicClasses": true
+  },
+  {
+    "name": "org.eclipse.jetty.server.ConnectionFactory[]",
+    "unsafeAllocated": true
   }
 ]
