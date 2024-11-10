@@ -1,7 +1,5 @@
 FROM container-registry.oracle.com/graalvm/native-image:23 as build
 
-RUN gu install native-image
-
 RUN curl -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein && \
     chmod +x lein && \
     mv lein /usr/bin/lein && \
