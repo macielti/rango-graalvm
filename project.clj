@@ -10,7 +10,7 @@
   :exclusions [amazonica]
 
   :dependencies [[org.clojure/clojure "1.12.0"]
-                 [net.clojars.macielti/common-clj "37.71.70"]
+                 [net.clojars.macielti/common-clj "37.71.71"]
                  [io.pedestal/pedestal.service "0.7.2"]
                  [io.pedestal/pedestal.jetty "0.7.2"]
                  [io.pedestal/pedestal.error "0.7.2"]
@@ -18,6 +18,7 @@
                  [net.clojars.macielti/porteiro-component "0.3.1"]
                  [net.clojars.macielti/postgresql-component "2.2.2"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
+                 [net.clojars.macielti/new-relic-component "0.1.0"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.13"]
@@ -50,12 +51,15 @@
                                                     "native-image"
 
                                                     "-Ob"
+                                                    "--enable-url-protocols=http,https"
 
+                                                    "--initialize-at-run-time=io.prometheus.client.Striped64"
+
+                                                    "--initialize-at-build-time"
                                                     "--initialize-at-build-time=org.pg.enums.TxLevel"
                                                     "--initialize-at-build-time=org.pg.enums.CopyFormat"
                                                     "--initialize-at-build-time=org.pg.enums.TXStatus"
 
-                                                    "--initialize-at-build-time"
                                                     "--report-unsupported-elements-at-runtime"
                                                     "--features=clj_easy.graal_build_time.InitClojureClasses"
                                                     "-Dio.pedestal.log.defaultMetricsRecorder=nil"
