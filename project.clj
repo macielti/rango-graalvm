@@ -49,6 +49,8 @@
                                     "native"       ["shell"
                                                     "native-image"
 
+                                                    "-Ob"
+
                                                     "--initialize-at-build-time=org.pg.enums.TxLevel"
                                                     "--initialize-at-build-time=org.pg.enums.CopyFormat"
                                                     "--initialize-at-build-time=org.pg.enums.TXStatus"
@@ -60,6 +62,7 @@
                                                     "-jar" "./target/${:uberjar-name:-${:name}-${:version}-standalone.jar}"
                                                     "-H:+UnlockExperimentalVMOptions"
                                                     "-H:ReflectionConfigurationFiles=reflect-config.json"
+                                                    "-H:+StaticExecutableWithDynamicLibC"
                                                     "-H:Name=./target/${:name}"]}}}
 
   :resource-paths ["resources"]
