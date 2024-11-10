@@ -16,3 +16,4 @@ pom.xml.asc
 /rango_graalvm.iml
 /.clj-kondo/.cache/
 /.lsp/.cache/
+/resources/migration.config.edn
