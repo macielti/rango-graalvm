@@ -1,14 +1,15 @@
-# rango-graalvm
+# Rango (GraalVM Edition)
 
-A Clojure library designed to ... well, that part is up to you.
+Rango is a REST API for school canteen management.
 
 ## Usage
 
-FIXME
+Run Database migrations:
+```lein run -m pg.migration.cli -c resources/migration.config.edn migrate --all```
 
 ## License
 
-Copyright © 2024 FIXME
+Copyright © 2024 Bruno do Nascimento Maciel
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
