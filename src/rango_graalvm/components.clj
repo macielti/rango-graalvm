@@ -1,11 +1,12 @@
 (ns rango-graalvm.components
   (:require [common-clj.integrant-components.config :as component.config]
-            [postgresql-component.core :as component.postgresql]
+            [common-clj.integrant-components.routes :as component.routes]
+            [integrant.core :as ig]
             [porteiro-component.admin-component :as porteiro.admin]
             [porteiro-component.diplomat.http-server :as porteiro.diplomat.http-server]
-            [common-clj.integrant-components.routes :as component.routes]
-            [rango-graalvm.service-component.core :as component.service]
-            [integrant.core :as ig]
+            [postgresql-component.core :as component.postgresql]
+            [rango-graalvm.diplomat.http-server :as diplomat.http-server]
+            [service-component.core :as component.service]
             [taoensso.timbre.tools.logging])
   (:gen-class))
 
@@ -17,7 +18,7 @@
    ::component.postgresql/postgresql {:components {:config (ig/ref ::component.config/config)}}
    ::porteiro.admin/admin            {:components {:config     (ig/ref ::component.config/config)
                                                    :postgresql (ig/ref ::component.postgresql/postgresql)}}
-   ::component.routes/routes         {:routes porteiro.diplomat.http-server/routes}
+   ::component.routes/routes         {:routes (concat diplomat.http-server/routes porteiro.diplomat.http-server/routes)}
    ::component.service/service       {:components {:config     (ig/ref ::component.config/config)
                                                    :routes     (ig/ref ::component.routes/routes)
                                                    :postgresql (ig/ref ::component.postgresql/postgresql)}}})
@@ -27,3 +28,8 @@
 
 (defn -main [& _args]
   (start-system!))
+
+(def config-test
+  (-> config
+      (assoc :common-clj.integrant-components.config/config {:path "resources/config.example.edn"
+                                                             :env  :test})))

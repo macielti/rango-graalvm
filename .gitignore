@@ -14,3 +14,5 @@ pom.xml.asc
 /resources/config.edn
 /rango-graalvm.iml
 /rango_graalvm.iml
+/.clj-kondo/.cache/
+/.lsp/.cache/
