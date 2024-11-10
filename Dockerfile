@@ -21,6 +21,6 @@ FROM gcr.io/distroless/base:latest
 
 WORKDIR /app
 
-COPY --from=build /usr/src/app/target/rango-native  /app/rango
+COPY --from=build /usr/src/app/target/rango-graalvm  /app/rango-graalvm
 
-CMD ["./rango"]
+CMD ["./rango-graalvm"]
