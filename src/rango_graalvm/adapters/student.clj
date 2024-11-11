@@ -4,6 +4,7 @@
             [rango-graalvm.models.sudent :as models.student]
             [rango-graalvm.wire.in.student :as wire.in.student]
             [rango-graalvm.wire.out.student :as wire.out.student]
+            [rango-graalvm.wire.postgresql.student :as wire.postgresql.student]
             [schema.core :as s]))
 
 (s/defn wire->internal :- models.student/Student
@@ -23,7 +24,7 @@
    :created-at (str created-at)})
 
 (s/defn postgresql->internal :- models.student/Student
-  [{:keys [id code name class created_at]}]
+  [{:keys [id code name class created_at]} :- wire.postgresql.student/Student]
   {:student/id         id
    :student/code       code
    :student/name       name

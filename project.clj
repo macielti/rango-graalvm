@@ -30,14 +30,14 @@
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
                    :dependencies   [[net.clojars.macielti/common-test-clj "1.1.0"]
-                                    [danlentz/clj-uuid "0.2.0"]
+                                    [danlentz/clj-uuid "0.1.9"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
                                     [com.github.igrishaev/pg2-migration "0.1.20"]]
 
                    :injections     [(require 'hashp.core)]
 
-                   :repl-options   {:init-ns rango.components}
+                   :repl-options   {:init-ns rango-graalvm.components}
 
                    :aliases        {"clean-ns"     ["clojure-lsp" "clean-ns" "--dry"] ;; check if namespaces are clean
                                     "format"       ["clojure-lsp" "format" "--dry"] ;; check if namespaces are formatted
