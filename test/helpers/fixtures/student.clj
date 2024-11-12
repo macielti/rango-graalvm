@@ -5,11 +5,13 @@
             [rango-graalvm.wire.postgresql.student :as wire.postgresql.student]
             [schema.core :as s]))
 
+(def student-id (random-uuid))
+
 (s/def wire-in-student :- wire.in.student/Student
   (helpers.schema/generate wire.in.student/Student {}))
 
 (s/def student :- models.student/Student
-  (helpers.schema/generate models.student/Student {}))
+  (helpers.schema/generate models.student/Student {:student/id student-id}))
 
 (s/def postgresql-student :- wire.postgresql.student/Student
   (helpers.schema/generate wire.postgresql.student/Student {}))
