@@ -1,11 +1,11 @@
 (ns rango-graalvm.db.postgresql.menu-test
-  (:require [clojure.test :refer :all]
-            [java-time.api :as jt]
-            [fixtures.menu]
-            [rango-graalvm.db.postgresql.menu :as database.menu]
+  (:require [clojure.test :refer [is testing]]
             [common-test-clj.component.postgresql-mock :as component.postgresql-mock]
             [common-test-clj.helpers.schema :as test.helper.schema]
+            [fixtures.menu]
+            [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
+            [rango-graalvm.db.postgresql.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
             [schema.test :as s]))
 
