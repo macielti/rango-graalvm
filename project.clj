@@ -11,6 +11,7 @@
 
   :dependencies [[org.clojure/clojure "1.12.0"]
                  [net.clojars.macielti/common-clj "37.71.71"]
+                 [net.clojars.macielti/http-client-component "0.1.0"]
                  [io.pedestal/pedestal.service "0.7.2"]
                  [io.pedestal/pedestal.jetty "0.7.2"]
                  [io.pedestal/pedestal.error "0.7.2"]
