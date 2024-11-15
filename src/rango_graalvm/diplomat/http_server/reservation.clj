@@ -18,3 +18,10 @@
   {:status 200
    :body   {:reservations (->> (controllers.reservation/fetch-by-menu (UUID/fromString menu-id) postgresql)
                                (map adapters.reservation/internal->wire))}})
+
+(s/defn retract-reservation!
+  [{{:keys [reservation-id]} :path-params
+    {:keys [postgresql]}     :components}]
+  (controllers.reservation/retract! (UUID/fromString reservation-id) postgresql)
+  {:status 200
+   :body   {}})
