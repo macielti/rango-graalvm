@@ -3,7 +3,6 @@
             [common-clj.integrant-components.config :as component.config]
             [common-clj.integrant-components.prometheus :as component.prometheus]
             [common-clj.integrant-components.routes :as component.routes]
-            [common-test-clj.component.postgresql-mock :as component.postgresql-mock]
             [http-client-component.core :as component.http-client]
             [integrant.core :as ig]
             [new-relic-component.core :as component.new-relic]
@@ -39,12 +38,3 @@
 (defn -main [& _args]
   (start-system!)
   (log/info :service-is-ready))
-
-(def config-test
-  (-> config
-      (dissoc ::component.postgresql/postgresql)
-      (merge {::component.config/config                   {:path "resources/config.example.edn"
-                                                           :env  :test}
-              ::component.postgresql-mock/postgresql-mock {:components {:config (ig/ref ::component.config/config)}}})
-      (assoc-in [::component.service/service :components :postgresql] (ig/ref ::component.postgresql-mock/postgresql-mock))
-      (assoc-in [::porteiro.admin/admin :components :postgresql] (ig/ref ::component.postgresql-mock/postgresql-mock))))

@@ -1,11 +1,11 @@
 (ns retract-reservation-test
   (:require [aux.http :as http]
+            [aux.components :as components]
             [clj-uuid]
             [clojure.test :refer [is testing]]
             [fixtures.menu]
             [fixtures.student]
             [integrant.core :as ig]
-            [rango-graalvm.components :as components]
             [schema.test :as s]
             [service-component.core :as component.service]))
 
