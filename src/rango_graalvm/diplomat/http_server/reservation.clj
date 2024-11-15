@@ -27,7 +27,7 @@
    :body   {}})
 
 (s/defn fetch-student-reservation-by-menu
-  [{{:keys [student-code menu-id]} :path-params
+  [{{:keys [student-code menu-id]} :query-params
     {:keys [postgresql]}           :components}]
   {:status 200
    :body   {:reservation (-> (controllers.reservation/fetch-student-reservation-by-menu student-code

@@ -6,6 +6,7 @@
             [fixtures.menu]
             [fixtures.student]
             [integrant.core :as ig]
+            [matcher-combinators.test :refer [match?]]
             [schema.test :as s]
             [service-component.core :as component.service]))
 
@@ -74,8 +75,9 @@
       (is (clj-uuid/uuid-string? reservation-id)))
 
     (testing "Retract reservation"
-      (is (= {:status 200
-              :body   {}}
-             (http/fetch-student-reservation-by-menu student-access-code menu-id service-fn))))
+      (is (match? {:status 200
+                   :body   {:reservation {:id      clj-uuid/uuid-string?
+                                          :menu-id menu-id}}}
+                  (http/fetch-student-reservation-by-menu student-access-code menu-id service-fn))))
 
     (ig/halt! system)))

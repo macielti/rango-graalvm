@@ -59,10 +59,9 @@
               :post [(common-traceability/http-with-correlation-id diplomat.http-server.reservation/create-reservation!)]
               :route-name :create-reservation]
 
-             ["/api/reservations/students/:student-code/menus/:menu-id"
-              :get [interceptors.menu/menu-resource-existence-interceptor-check
-                    (common-traceability/http-with-correlation-id diplomat.http-server.reservation/fetch-student-reservation-by-menu)]
-              :route-name :fetch-student-reservation-by-menu]
+             ["/api/reservation-by-student-and-menu"
+              :get [(common-traceability/http-with-correlation-id diplomat.http-server.reservation/fetch-student-reservation-by-menu)]
+              :route-name :fetch-reservation-by-student-and-menu]
 
              ["/api/reservations/:reservation-id"
               :delete [interceptors.reservation/reservation-resource-existence-interceptor-check
