@@ -1,6 +1,6 @@
 (ns retract-reservation-test
-  (:require [aux.http :as http]
-            [aux.components :as components]
+  (:require [aux.components :as components]
+            [aux.http :as http]
             [clj-uuid]
             [clojure.test :refer [is testing]]
             [fixtures.menu]

@@ -36,6 +36,15 @@
     {:status status
      :body   (json/decode body true)}))
 
+(defn fetch-one-menu
+  [menu-id
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get (str "/api/menus/" menu-id)
+                                                 :headers {"Content-Type" "application/json"})]
+    {:status status
+     :body   (json/decode body true)}))
+
 (defn create-reservation
   [reservation
    service-fn]
