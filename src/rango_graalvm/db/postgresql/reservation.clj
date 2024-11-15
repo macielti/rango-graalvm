@@ -38,3 +38,16 @@
   (pg/execute database-conn
               "DELETE FROM reservations WHERE id = $1"
               {:params [reservation-id]}))
+
+(s/defn fetch-student-reservation-by-menu :- (s/maybe models.reservation/Reservation)
+  [student-id :- s/Uuid
+   menu-id :- s/Uuid
+   database-conn]
+  (some-> (pg/execute database-conn
+                      "SELECT *
+                       FROM reservations
+                       WHERE
+                         menu_id = $1 AND student_id = $2"
+                      {:params [menu-id student-id]})
+          first
+          adapters.reservation/postgresql->internal))

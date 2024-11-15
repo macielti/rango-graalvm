@@ -62,3 +62,12 @@
                                                  :delete (str "/api/reservations/" reservation-id))]
     {:status status
      :body   (json/decode body true)}))
+
+(defn fetch-student-reservation-by-menu
+  [student-code
+   menu-id
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get (str "/api/reservation-by-student-and-menu?student-code=" student-code "&menu-id=" menu-id))]
+    {:status status
+     :body   (json/decode body true)}))
