@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: net.clojars.macielti/common-test-clj:1.1.0">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/net/clojars/macielti/common-test-clj/1.1.0/common-test-clj-1.1.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
