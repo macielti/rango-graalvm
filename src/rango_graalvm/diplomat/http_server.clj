@@ -47,6 +47,10 @@
                        (common-traceability/http-with-correlation-id diplomat.http-server.menu/retract-menu!)]
               :route-name :retract-menu]
 
+             ["/api/menus/:menu-id"
+              :get [(common-traceability/http-with-correlation-id diplomat.http-server.menu/fetch-one)]
+              :route-name :fetch-one-menu]
+
              ["/api/menus"
               :get [(common-traceability/http-with-correlation-id diplomat.http-server.menu/fetch-all)]
               :route-name :fetch-all-menus]

@@ -1,11 +1,11 @@
 (ns aux.components
-  (:require [rango-graalvm.components :as components]
+  (:require [common-clj.integrant-components.config :as component.config]
             [common-test-clj.component.postgresql-mock :as component.postgresql-mock]
-            [common-clj.integrant-components.config :as component.config]
-            [postgresql-component.core :as component.postgresql]
+            [integrant.core :as ig]
             [porteiro-component.admin-component :as porteiro.admin]
-            [service-component.core :as component.service]
-            [integrant.core :as ig]))
+            [postgresql-component.core :as component.postgresql]
+            [rango-graalvm.components :as components]
+            [service-component.core :as component.service]))
 
 (def config-test
   (-> components/config

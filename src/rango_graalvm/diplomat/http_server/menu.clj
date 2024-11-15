@@ -12,6 +12,13 @@
                       (controllers.menu/create! postgresql)
                       adapters.menu/internal->wire)}})
 
+(s/defn fetch-one
+  [{{:keys [menu-id]}    :path-params
+    {:keys [postgresql]} :components}]
+  {:status 200
+   :body   {:menu (->> (controllers.menu/fetch-one (UUID/fromString menu-id) postgresql)
+                       adapters.menu/internal->wire)}})
+
 (s/defn fetch-all
   [{{:keys [postgresql]} :components}]
   {:status 200
