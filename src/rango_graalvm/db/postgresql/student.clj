@@ -37,7 +37,9 @@
                       "SELECT students.*
                        FROM students
                        JOIN reservations ON students.id = reservations.student_id
-                       WHERE reservations.menu_id = $1"
+                       WHERE
+                         reservations.menu_id = $1
+                       ORDER BY students.class"
                       {:params [menu-id]})
           (->> (map adapters.student/postgresql->internal))))
 
