@@ -48,3 +48,15 @@
     (is (nil? (database.reservation/lookup-by-student-and-menu (random-uuid) fixtures.menu/menu-id conn)))
 
     (is (nil? (database.reservation/lookup-by-student-and-menu (random-uuid) (random-uuid) conn)))))
+
+(s/deftest retract-test
+  (let [conn (component.postgresql-mock/postgresql-conn-mock)]
+
+    (is (match? {:reservation/id         fixtures.reservation/reservation-id
+                 :reservation/student-id fixtures.student/student-id
+                 :reservation/menu-id    fixtures.menu/menu-id
+                 :reservation/created-at jt/local-date-time?}
+                (database.reservation/insert! fixtures.reservation/reservation conn)))
+
+    (is (match? {:deleted 1}
+                (database.reservation/retract! fixtures.reservation/reservation-id conn)))))

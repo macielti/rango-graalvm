@@ -18,6 +18,12 @@
         reservation
         (database.reservation/insert! (logic.reservation/->reservation student menu) database-conn)))))
 
+(s/defn retract!
+  [reservation-id :- s/Uuid
+   postgresql]
+  (pool/with-connection [database-conn postgresql]
+    (database.reservation/retract! reservation-id database-conn)))
+
 (s/defn fetch-by-menu :- [models.reservation/Reservation]
   [menu-id :- s/Uuid
    postgresql]

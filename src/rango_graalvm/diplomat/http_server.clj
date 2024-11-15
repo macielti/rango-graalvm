@@ -54,6 +54,10 @@
               :post [(common-traceability/http-with-correlation-id diplomat.http-server.reservation/create-reservation!)]
               :route-name :create-reservation]
 
+             ["/api/reservations/:reservation-id"
+              :delete [(common-traceability/http-with-correlation-id diplomat.http-server.reservation/retract-reservation!)]
+              :route-name :retract-reservation]
+
              ["/api/reservations/menus/:menu-id"
               :get [interceptors.menu/menu-resource-existence-interceptor-check
                     (common-traceability/http-with-correlation-id diplomat.http-server.reservation/fetch-reservations-by-menu)]

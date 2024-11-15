@@ -31,3 +31,10 @@
                       {:params [menu-id student-id]})
           first
           adapters.reservation/postgresql->internal))
+
+(s/defn retract!
+  [reservation-id :- s/Uuid
+   database-conn]
+  (pg/execute database-conn
+              "DELETE FROM reservations WHERE id = $1"
+              {:params [reservation-id]}))
