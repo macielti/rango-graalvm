@@ -29,3 +29,12 @@
    postgresql]
   (pool/with-connection [database-conn postgresql]
     (database.reservation/by-menu menu-id database-conn)))
+
+(s/defn fetch-student-reservation-by-menu :- models.reservation/Reservation
+  [student-code :- s/Str
+   menu-id :- s/Uuid
+   postgresql]
+  (pool/with-connection [database-conn postgresql]
+    (-> (database.student/lookup-by-code student-code database-conn)
+        :student/id
+        (database.reservation/fetch-student-reservation-by-menu menu-id database-conn))))

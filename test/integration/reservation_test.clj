@@ -1,4 +1,4 @@
-(ns retract-reservation-test
+(ns reservation-test
   (:require [aux.components :as components]
             [aux.http :as http]
             [clj-uuid]
@@ -45,5 +45,37 @@
                        :error   "resource-not-found"
                        :message "Resource could not be found"}}
              (http/retract-reservation (random-uuid) service-fn))))
+
+    (ig/halt! system)))
+
+(s/deftest fetch-student-reservation-by-menu-test
+  (let [system (ig/init components/config-test)
+        service-fn (-> system ::component.service/service :io.pedestal.http/service-fn)
+        token (-> (http/authenticate-admin {:customer {:username "admin" :password "da3bf409"}} service-fn)
+                  :body :token)
+        {student-access-code :code} (-> {:student fixtures.student/wire-in-student}
+                                        (http/create-student token service-fn)
+                                        :body :student)
+        {menu-id :id} (-> (http/create-menu {:menu fixtures.menu/wire-in-menu} token service-fn) :body :menu)
+        {reservation-id :id} (-> (http/create-reservation {:reservation {:student-code student-access-code
+                                                                         :menu-id      menu-id}} service-fn)
+                                 :body :reservation)]
+
+    (testing "Admin is authenticated"
+      (is (string? token)))
+
+    (testing "Student was created"
+      (is (string? student-access-code)))
+
+    (testing "Menu was created"
+      (is (clj-uuid/uuid-string? menu-id)))
+
+    (testing "Reservation was created"
+      (is (clj-uuid/uuid-string? reservation-id)))
+
+    (testing "Retract reservation"
+      (is (= {:status 200
+              :body   {}}
+             (http/fetch-student-reservation-by-menu student-access-code menu-id service-fn))))
 
     (ig/halt! system)))
