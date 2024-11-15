@@ -5,6 +5,7 @@
             [rango-graalvm.diplomat.http-server.reservation :as diplomat.http-server.reservation]
             [rango-graalvm.diplomat.http-server.student :as diplomat.http-server.student]
             [rango-graalvm.interceptors.menu :as interceptors.menu]
+            [rango-graalvm.interceptors.reservation :as interceptors.reservation]
             [rango-graalvm.interceptors.student :as interceptors.student]))
 
 (def routes [["/api/students"
@@ -55,7 +56,8 @@
               :route-name :create-reservation]
 
              ["/api/reservations/:reservation-id"
-              :delete [(common-traceability/http-with-correlation-id diplomat.http-server.reservation/retract-reservation!)]
+              :delete [interceptors.reservation/reservation-resource-existence-interceptor-check
+                       (common-traceability/http-with-correlation-id diplomat.http-server.reservation/retract-reservation!)]
               :route-name :retract-reservation]
 
              ["/api/reservations/menus/:menu-id"
