@@ -3,6 +3,7 @@
             [common-clj.integrant-components.config :as component.config]
             [common-clj.integrant-components.prometheus :as component.prometheus]
             [common-clj.integrant-components.routes :as component.routes]
+            [http-client-component.core :as component.http-client]
             [integrant.core :as ig]
             [new-relic-component.core :as component.new-relic]
             [porteiro-component.admin-component :as porteiro.admin]
@@ -10,7 +11,6 @@
             [postgresql-component.core :as component.postgresql]
             [rango-graalvm.diplomat.http-server :as diplomat.http-server]
             [service-component.core :as component.service]
-            [http-client-component.core :as component.http-client]
             [taoensso.timbre.tools.logging])
   (:gen-class))
 
