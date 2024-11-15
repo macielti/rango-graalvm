@@ -11,7 +11,7 @@
 
   :dependencies [[org.clojure/clojure "1.12.0"]
                  [net.clojars.macielti/common-clj "38.71.71"]
-                 [net.clojars.macielti/http-client-component "0.2.0"]
+                 [net.clojars.macielti/http-client-component "0.1.0"]
                  [io.pedestal/pedestal.service "0.7.2"]
                  [io.pedestal/pedestal.jetty "0.7.2"]
                  [io.pedestal/pedestal.error "0.7.2"]
@@ -19,7 +19,7 @@
                  [net.clojars.macielti/porteiro-component "0.3.1"]
                  [net.clojars.macielti/postgresql-component "2.2.2"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
-                 [net.clojars.macielti/new-relic-component "0.1.0"]
+                 [net.clojars.macielti/new-relic-component "0.2.0"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.13"]
