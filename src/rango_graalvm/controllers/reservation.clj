@@ -30,6 +30,12 @@
   (pool/with-connection [database-conn postgresql]
     (database.reservation/by-menu menu-id database-conn)))
 
+(s/defn fetch-reservation :- models.reservation/Reservation
+  [reservation-id :- s/Uuid
+   postgresql]
+  (pool/with-connection [database-conn postgresql]
+    (database.reservation/lookup reservation-id database-conn)))
+
 (s/defn fetch-student-reservation-by-menu :- models.reservation/Reservation
   [student-code :- s/Str
    menu-id :- s/Uuid
