@@ -82,7 +82,6 @@
 
     (ig/halt! system)))
 
-
 (s/deftest fetch-one-reservation-test
   (let [system (ig/init components/config-test)
         service-fn (-> system ::component.service/service :io.pedestal.http/service-fn)
