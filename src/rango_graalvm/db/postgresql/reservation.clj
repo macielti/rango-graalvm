@@ -22,6 +22,15 @@
                       {:params [menu-id]})
           (->> (map adapters.reservation/postgresql->internal))))
 
+(s/defn lookup :- (s/maybe models.reservation/Reservation)
+  [reservation-id :- s/Uuid
+   database-conn]
+  (some-> (pg/execute database-conn
+                      "SELECT * FROM reservations WHERE id = $1"
+                      {:params [reservation-id]})
+          first
+          adapters.reservation/postgresql->internal))
+
 (s/defn lookup-by-student-and-menu :- (s/maybe models.reservation/Reservation)
   [student-id :- s/Uuid
    menu-id :- s/Uuid
