@@ -60,3 +60,12 @@
 
     (is (match? {:deleted 1}
                 (database.reservation/retract! fixtures.reservation/reservation-id conn)))))
+
+(s/deftest lookup-test
+  (let [conn (component.postgresql-mock/postgresql-conn-mock)]
+    (database.reservation/insert! fixtures.reservation/reservation conn)
+
+    (is (match? {:reservation/id fixtures.reservation/reservation-id}
+                (database.reservation/lookup fixtures.reservation/reservation-id conn)))
+
+    (is (nil? (database.reservation/lookup (random-uuid) conn)))))
