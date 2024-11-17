@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: dev.failsafe/failsafe:3.3.2">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/dev/failsafe/failsafe/3.3.2/failsafe-3.3.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
