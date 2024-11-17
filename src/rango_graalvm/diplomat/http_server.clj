@@ -8,10 +8,14 @@
             [rango-graalvm.interceptors.menu :as interceptors.menu]
             [rango-graalvm.interceptors.reservation :as interceptors.reservation]
             [rango-graalvm.interceptors.student :as interceptors.student]
-            [service-component.interceptors :as service.interceptors]))
+            [rango-graalvm.wire.in.menu :as wire.in.menu]
+            [service-component.interceptors :as service.interceptors]
+            [rango-graalvm.wire.in.reservation :as wire.in.reservation]
+            [rango-graalvm.wire.in.student :as wire.in.student]))
 
 (def routes [["/api/students"
               :post [traceability/with-correlation-id-interceptor
+                     (service.interceptors/schema-body-in-interceptor wire.in.student/StudentDocument)
                      service.interceptors/http-request-in-handle-timing-interceptor
                      io.interceptors.authentication/identity-interceptor
                      (io.interceptors.authentication/required-roles-interceptor [:admin])
@@ -46,6 +50,7 @@
 
              ["/api/menus"
               :post [traceability/with-correlation-id-interceptor
+                     (service.interceptors/schema-body-in-interceptor wire.in.menu/MenuDocument)
                      service.interceptors/http-request-in-handle-timing-interceptor
                      io.interceptors.authentication/identity-interceptor
                      (io.interceptors.authentication/required-roles-interceptor [:admin])
@@ -75,6 +80,7 @@
 
              ["/api/reservations"
               :post [traceability/with-correlation-id-interceptor
+                     (service.interceptors/schema-body-in-interceptor wire.in.reservation/ReservationDocument)
                      service.interceptors/http-request-in-handle-timing-interceptor
                      diplomat.http-server.reservation/create-reservation!]
               :route-name :create-reservation]
@@ -106,6 +112,7 @@
                     diplomat.http-server.reservation/fetch-reservations-by-menu]
               :route-name :fetch-reservations-by-menu]
 
-             ["/metrics" :get [service.interceptors/http-request-in-handle-timing-interceptor
-                               component.prometheus/expose-metrics-http-request-handler]
+             ["/metrics"
+              :get [service.interceptors/http-request-in-handle-timing-interceptor
+                    component.prometheus/expose-metrics-http-request-handler]
               :route-name :fetch-prometheus-metrics]])

@@ -2,7 +2,10 @@
   (:require [schema.core :as s]))
 
 (def reservation
-  {:reservation-id s/Str
-   :student-code   s/Str})
+  {:menu-id      s/Str
+   :student-code s/Str})
 
 (s/defschema Reservation reservation)
+
+(s/defschema ReservationDocument
+  {:reservation Reservation})

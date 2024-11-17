@@ -7,3 +7,6 @@
    :class s/Str})
 
 (s/defschema Student student)
+
+(s/defschema StudentDocument
+  {:student Student})

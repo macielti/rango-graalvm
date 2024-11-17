@@ -6,3 +6,6 @@
    :description    s/Str})
 
 (s/defschema Menu menu)
+
+(s/defschema MenuDocument
+  {:menu Menu})
