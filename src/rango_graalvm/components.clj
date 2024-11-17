@@ -30,6 +30,7 @@
    ::component.routes/routes           {:routes (concat diplomat.http-server/routes porteiro.diplomat.http-server/routes)}
    ::component.service/service         {:components {:config     (ig/ref ::component.config/config)
                                                      :routes     (ig/ref ::component.routes/routes)
+                                                     :prometheus (ig/ref ::component.prometheus/prometheus)
                                                      :postgresql (ig/ref ::component.postgresql/postgresql)}}})
 
 (defn start-system! []

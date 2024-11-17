@@ -22,7 +22,7 @@
                  [net.clojars.macielti/new-relic-component "0.2.0"]
                  [com.taoensso/timbre "6.6.1"]]
 
-  :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.13"]
+  :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.15"]
                                     [com.github.liquidz/antq "RELEASE"]
                                     [lein-shell "0.5.0"]]
 
@@ -31,10 +31,10 @@
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
                    :dependencies   [[net.clojars.macielti/common-test-clj "1.1.1"]
-                                    [danlentz/clj-uuid "0.1.9"]
+                                    [danlentz/clj-uuid "0.2.0"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
-                                    [com.github.igrishaev/pg2-migration "0.1.20"]]
+                                    [com.github.igrishaev/pg2-migration "0.1.21"]]
 
                    :injections     [(require 'hashp.core)]
 
