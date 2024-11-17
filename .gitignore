@@ -18,3 +18,4 @@ pom.xml.asc
 /.lsp/.cache/
 /resources/migration.config.edn
 .idea
+/.clj-kondo/imports/
