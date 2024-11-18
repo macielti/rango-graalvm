@@ -9,9 +9,9 @@
             [rango-graalvm.interceptors.reservation :as interceptors.reservation]
             [rango-graalvm.interceptors.student :as interceptors.student]
             [rango-graalvm.wire.in.menu :as wire.in.menu]
-            [service-component.interceptors :as service.interceptors]
             [rango-graalvm.wire.in.reservation :as wire.in.reservation]
-            [rango-graalvm.wire.in.student :as wire.in.student]))
+            [rango-graalvm.wire.in.student :as wire.in.student]
+            [service-component.interceptors :as service.interceptors]))
 
 (def routes [["/api/students"
               :post [traceability/with-correlation-id-interceptor
