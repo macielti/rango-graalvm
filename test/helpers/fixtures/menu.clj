@@ -18,4 +18,5 @@
   (helpers.schema/generate wire.postgresql.menu/Menu {}))
 
 (s/def menu :- models.menu/Menu
-  (helpers.schema/generate models.menu/Menu {:menu/id menu-id}))
+  (helpers.schema/generate models.menu/Menu {:menu/id          menu-id
+                                             :menu/description menu-description}))

@@ -5,29 +5,29 @@
   (:import (java.util UUID)))
 
 (s/defn create-student!
-  [{{:keys [student]}    :json-params
-    {:keys [postgresql]} :components}]
+  [{{:keys [student]} :json-params
+    {:keys [sqlite]}  :components}]
   {:status 200
    :body   {:student (-> (adapters.student/wire->internal student)
-                         (controllers.student/create! postgresql)
+                         (controllers.student/create! sqlite)
                          adapters.student/internal->wire)}})
 
 (s/defn fetch-all
-  [{{:keys [postgresql]} :components}]
+  [{{:keys [sqlite]} :components}]
   {:status 200
-   :body   {:students (->> (controllers.student/fetch-all postgresql)
+   :body   {:students (->> (controllers.student/fetch-all sqlite)
                            (map adapters.student/internal->wire))}})
 
 (s/defn fetch-students-by-reservations-menu
-  [{{:keys [menu-id]}    :path-params
-    {:keys [postgresql]} :components}]
+  [{{:keys [menu-id]} :path-params
+    {:keys [sqlite]}  :components}]
   {:status 200
-   :body   {:students (->> (controllers.student/fetch-students-by-menu-reservations (UUID/fromString menu-id) postgresql)
+   :body   {:students (->> (controllers.student/fetch-students-by-menu-reservations (UUID/fromString menu-id) sqlite)
                            (map adapters.student/internal->wire))}})
 
 (s/defn retract-student!
   [{{:keys [student-id]} :path-params
-    {:keys [postgresql]} :components}]
-  (controllers.student/retract! (UUID/fromString student-id) postgresql)
+    {:keys [sqlite]}     :components}]
+  (controllers.student/retract! (UUID/fromString student-id) sqlite)
   {:status 200
    :body   {}})

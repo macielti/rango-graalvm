@@ -10,33 +10,38 @@
   :exclusions [amazonica]
 
   :dependencies [[org.clojure/clojure "1.12.0"]
-                 [net.clojars.macielti/common-clj "40.72.72"]
+                 [net.clojars.macielti/common-clj "41.72.72"]
                  [net.clojars.macielti/http-client-component "0.1.0"]
                  [io.pedestal/pedestal.service "0.7.2"]
                  [io.pedestal/pedestal.jetty "0.7.2"]
                  [io.pedestal/pedestal.error "0.7.2"]
                  [net.clojars.macielti/service-component "2.4.2"]
-                 [net.clojars.macielti/porteiro-component "0.3.1"]
-                 [net.clojars.macielti/postgresql-component "2.2.2"]
+                 [net.clojars.macielti/porteiro-component "0.4.1"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
                  [net.clojars.macielti/new-relic-component "0.2.0"]
+                 [migratus "1.6.3"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.15"]
                                     [com.github.liquidz/antq "RELEASE"]
+                                    [migratus-lein "0.7.3"]
                                     [lein-shell "0.5.0"]]
 
                    :resource-paths ["resources" "test/resources/"]
 
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
-                   :dependencies   [[net.clojars.macielti/common-test-clj "1.1.1"]
+                   :dependencies   [[net.clojars.macielti/common-test-clj "2.1.1"]
                                     [danlentz/clj-uuid "0.2.0"]
+                                    [migratus "1.6.3"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
                                     [com.github.igrishaev/pg2-migration "0.1.21"]]
 
                    :injections     [(require 'hashp.core)]
+
+                   :migratus       {:store         :database
+                                    :migration-dir "migrations-sqlite/"}
 
                    :repl-options   {:init-ns rango-graalvm.components}
 

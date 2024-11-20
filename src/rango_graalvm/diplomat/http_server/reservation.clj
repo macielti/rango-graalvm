@@ -6,38 +6,38 @@
 
 (s/defn create-reservation!
   [{{:keys [reservation]} :json-params
-    {:keys [postgresql]}  :components}]
+    {:keys [sqlite]}      :components}]
   {:status 200
    :body   {:reservation (-> (controllers.reservation/create! (:student-code reservation)
-                                                              (UUID/fromString (:menu-id reservation)) postgresql)
+                                                              (UUID/fromString (:menu-id reservation)) sqlite)
                              adapters.reservation/internal->wire)}})
 
 (s/defn fetch-reservations-by-menu
-  [{{:keys [menu-id]}    :path-params
-    {:keys [postgresql]} :components}]
+  [{{:keys [menu-id]} :path-params
+    {:keys [sqlite]}  :components}]
   {:status 200
-   :body   {:reservations (->> (controllers.reservation/fetch-by-menu (UUID/fromString menu-id) postgresql)
+   :body   {:reservations (->> (controllers.reservation/fetch-by-menu (UUID/fromString menu-id) sqlite)
                                (map adapters.reservation/internal->wire))}})
 
 (s/defn fetch-reservation
   [{{:keys [reservation-id]} :path-params
-    {:keys [postgresql]}     :components}]
+    {:keys [sqlite]}         :components}]
   {:status 200
-   :body   {:reservation (->> (controllers.reservation/fetch-reservation (UUID/fromString reservation-id) postgresql)
+   :body   {:reservation (->> (controllers.reservation/fetch-reservation (UUID/fromString reservation-id) sqlite)
                               adapters.reservation/internal->wire)}})
 
 (s/defn retract-reservation!
   [{{:keys [reservation-id]} :path-params
-    {:keys [postgresql]}     :components}]
-  (controllers.reservation/retract! (UUID/fromString reservation-id) postgresql)
+    {:keys [sqlite]}         :components}]
+  (controllers.reservation/retract! (UUID/fromString reservation-id) sqlite)
   {:status 200
    :body   {}})
 
 (s/defn fetch-student-reservation-by-menu
   [{{:keys [student-code menu-id]} :query-params
-    {:keys [postgresql]}           :components}]
+    {:keys [sqlite]}               :components}]
   {:status 200
    :body   {:reservation (-> (controllers.reservation/fetch-student-reservation-by-menu student-code
                                                                                         (UUID/fromString menu-id)
-                                                                                        postgresql)
+                                                                                        sqlite)
                              adapters.reservation/internal->wire)}})
