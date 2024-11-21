@@ -80,8 +80,9 @@
 
              ["/api/reservations"
               :post [traceability/with-correlation-id-interceptor
-                     (service.interceptors/schema-body-in-interceptor wire.in.reservation/ReservationDocument)
                      service.interceptors/http-request-in-handle-timing-interceptor
+                     (service.interceptors/schema-body-in-interceptor wire.in.reservation/ReservationDocument)
+                     interceptors.student/student-resource-existence-interceptor-check-for-reservation-creation
                      diplomat.http-server.reservation/create-reservation!]
               :route-name :create-reservation]
 
