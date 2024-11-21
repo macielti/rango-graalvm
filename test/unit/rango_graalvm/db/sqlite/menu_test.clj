@@ -5,9 +5,9 @@
             [fixtures.menu]
             [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
+            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [rango-graalvm.db.sqlite.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
-            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [schema.test :as s]))
 
 (s/deftest insert-test

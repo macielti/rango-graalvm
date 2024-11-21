@@ -4,9 +4,9 @@
             [integrant.core :as ig]
             [porteiro-component.admin-component :as porteiro.admin]
             [rango-graalvm.components :as components]
-            [sqlite-component.core :as component.sqlite]
             [rango-graalvm.db.sqlite.config :as sqlite.config]
-            [service-component.core :as component.service]))
+            [service-component.core :as component.service]
+            [sqlite-component.core :as component.sqlite]))
 
 (def config-test
   (-> components/config

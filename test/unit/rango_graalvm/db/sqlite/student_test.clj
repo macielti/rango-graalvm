@@ -7,11 +7,11 @@
             [fixtures.student]
             [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
+            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [rango-graalvm.db.sqlite.reservation :as database.reservation]
             [rango-graalvm.db.sqlite.student :as database.student]
             [rango-graalvm.models.reservation :as models.reservation]
             [rango-graalvm.models.sudent :as models.student]
-            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [schema.test :as s]))
 
 (s/deftest insert-test

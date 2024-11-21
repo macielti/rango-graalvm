@@ -5,13 +5,13 @@
             [rango-graalvm.diplomat.http-server.menu :as diplomat.http-server.menu]
             [rango-graalvm.diplomat.http-server.reservation :as diplomat.http-server.reservation]
             [rango-graalvm.diplomat.http-server.student :as diplomat.http-server.student]
+            [rango-graalvm.interceptors.menu :as interceptors.menu]
+            [rango-graalvm.interceptors.reservation :as interceptors.reservation]
+            [rango-graalvm.interceptors.student :as interceptors.student]
             [rango-graalvm.wire.in.menu :as wire.in.menu]
             [rango-graalvm.wire.in.reservation :as wire.in.reservation]
             [rango-graalvm.wire.in.student :as wire.in.student]
-            [service-component.interceptors :as service.interceptors]
-            [rango-graalvm.interceptors.menu :as interceptors.menu]
-            [rango-graalvm.interceptors.student :as interceptors.student]
-            [rango-graalvm.interceptors.reservation :as interceptors.reservation]))
+            [service-component.interceptors :as service.interceptors]))
 
 (def routes [["/api/students"
               :post [traceability/with-correlation-id-interceptor
