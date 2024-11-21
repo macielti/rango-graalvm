@@ -1,11 +1,8 @@
 {:test {:service-name        "rango"
         :jwt-secret          "da3bf409-6b8e-448b-b7a7-025df2e2fa1a"
         :new-relic-api-key   "random-access-key"
-        :postgresql          {:host     "127.0.0.1"
-                              :port     10150
-                              :user     "test"
-                              :password "random-password"
-                              :database "test"}
+        :sqlite              {:dbtype "sqlite"
+                              :dbname "resources/rango-ceti-fausto-lustosa.db"}
         :service             {:host "0.0.0.0"
                               :port 8080}
         :admin-customer-seed {:customer {:username "admin"

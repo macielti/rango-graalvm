@@ -24,12 +24,3 @@
                  :class      string?
                  :created-at string?}
                 (adapters.student/internal->wire fixtures.student/student)))))
-
-(s/deftest postgresql->internal-test
-  (testing "That we can internalize a postgresql Student"
-    (is (match? {:student/id         uuid?
-                 :student/code       string?
-                 :student/name       string?
-                 :student/class      keyword?
-                 :student/created-at jt/local-date-time?}
-                (adapters.student/postgresql->internal fixtures.student/postgresql-student)))))

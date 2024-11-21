@@ -8,9 +8,10 @@
             [new-relic-component.core :as component.new-relic]
             [porteiro-component.admin-component :as porteiro.admin]
             [porteiro-component.diplomat.http-server :as porteiro.diplomat.http-server]
-            [postgresql-component.core :as component.postgresql]
+            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [rango-graalvm.diplomat.http-server :as diplomat.http-server]
             [service-component.core :as component.service]
+            [sqlite-component.core :as component.sqlite]
             [taoensso.timbre.tools.logging])
   (:gen-class))
 
@@ -24,14 +25,15 @@
                                                      :prometheus (ig/ref ::component.prometheus/prometheus)}}
    ::component.new-relic/new-relic     {:components {:config      (ig/ref ::component.config/config)
                                                      :http-client (ig/ref ::component.http-client/http-client)}}
-   ::component.postgresql/postgresql   {:components {:config (ig/ref ::component.config/config)}}
-   ::porteiro.admin/admin              {:components {:config     (ig/ref ::component.config/config)
-                                                     :postgresql (ig/ref ::component.postgresql/postgresql)}}
+   ::component.sqlite/sqlite           {:schemas    sqlite.config/schemas
+                                        :components {:config (ig/ref ::component.config/config)}}
+   ::porteiro.admin/admin              {:components {:config (ig/ref ::component.config/config)
+                                                     :sqlite (ig/ref ::component.sqlite/sqlite)}}
    ::component.routes/routes           {:routes (concat diplomat.http-server/routes porteiro.diplomat.http-server/routes)}
    ::component.service/service         {:components {:config     (ig/ref ::component.config/config)
                                                      :routes     (ig/ref ::component.routes/routes)
                                                      :prometheus (ig/ref ::component.prometheus/prometheus)
-                                                     :postgresql (ig/ref ::component.postgresql/postgresql)}}})
+                                                     :sqlite     (ig/ref ::component.sqlite/sqlite)}}})
 
 (defn start-system! []
   (ig/init config))
