@@ -42,7 +42,7 @@
   [reservation-id :- s/Uuid
    database]
   (with-open [conn (jdbc/get-connection database)]
-    (jdbc/execute! conn ["DELETE FROM menus WHERE id = ?" (str reservation-id)])))
+    (jdbc/execute! conn ["DELETE FROM reservations WHERE id = ?" (str reservation-id)])))
 
 (s/defn fetch-student-reservation-by-menu :- (s/maybe models.reservation/Reservation)
   [student-id :- s/Uuid

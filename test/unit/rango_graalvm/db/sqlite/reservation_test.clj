@@ -68,7 +68,7 @@
                  :reservation/created-at jt/local-date-time?}
                 (database.reservation/insert! fixtures.reservation/reservation database)))
 
-    (is (match? [{:next.jdbc/update-count 0}]
+    (is (match? [{:next.jdbc/update-count 1}]
                 (database.reservation/retract! fixtures.reservation/reservation-id database)))))
 
 (s/deftest fetch-student-reservation-by-menu-test
