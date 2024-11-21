@@ -1,8 +1,8 @@
 (ns rango-graalvm.db.sqlite.menu
   (:require [next.jdbc :as jdbc]
             [rango-graalvm.adapters.menu :as adapters.menu]
-            [schema.core :as s]
-            [rango-graalvm.models.menu :as models.menu]))
+            [rango-graalvm.models.menu :as models.menu]
+            [schema.core :as s]))
 
 (s/defn insert! :- models.menu/Menu
   [{:menu/keys [id reference-date description created-at]} :- models.menu/Menu
