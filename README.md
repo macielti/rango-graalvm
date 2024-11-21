@@ -6,15 +6,10 @@ Rango is a REST API for school canteen management.
 flowchart TD
     G(Front End) -.-> LB(API)
     subgraph Backend
-        LB -.-> Db[(PostgreSQL)]
-        
+        LB -.-> Db[(SQLite)]
+
     end
 ```
-
-## Usage
-
-Run Database migrations:
-```lein run -m pg.migration.cli -c resources/migration.config.edn migrate --all```
 
 ## License
 
