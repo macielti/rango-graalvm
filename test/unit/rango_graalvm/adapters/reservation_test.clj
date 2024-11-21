@@ -2,7 +2,6 @@
   (:require [clj-uuid]
             [clojure.test :refer [is testing]]
             [fixtures.reservation]
-            [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
             [rango-graalvm.adapters.reservation :as adapters.reservation]
             [schema.test :as s]))
