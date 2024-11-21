@@ -10,7 +10,7 @@
             [porteiro-component.diplomat.http-server :as porteiro.diplomat.http-server]
             [rango-graalvm.db.sqlite.config :as sqlite.config]
             [rango-graalvm.diplomat.http-server :as diplomat.http-server]
-            [rango-graalvm.sqlite :as component.sqlite]
+            [sqlite-component.core :as component.sqlite]
             [service-component.core :as component.service]
             [taoensso.timbre.tools.logging])
   (:gen-class))

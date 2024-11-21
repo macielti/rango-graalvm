@@ -4,7 +4,7 @@
             [integrant.core :as ig]
             [porteiro-component.admin-component :as porteiro.admin]
             [rango-graalvm.components :as components]
-            [rango-graalvm.sqlite :as component.sqlite]
+            [sqlite-component.core :as component.sqlite]
             [rango-graalvm.db.sqlite.config :as sqlite.config]
             [service-component.core :as component.service]))
 

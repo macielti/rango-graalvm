@@ -8,7 +8,10 @@
             [rango-graalvm.wire.in.menu :as wire.in.menu]
             [rango-graalvm.wire.in.reservation :as wire.in.reservation]
             [rango-graalvm.wire.in.student :as wire.in.student]
-            [service-component.interceptors :as service.interceptors]))
+            [service-component.interceptors :as service.interceptors]
+            [rango-graalvm.interceptors.menu :as interceptors.menu]
+            [rango-graalvm.interceptors.student :as interceptors.student]
+            [rango-graalvm.interceptors.reservation :as interceptors.reservation]))
 
 (def routes [["/api/students"
               :post [traceability/with-correlation-id-interceptor
@@ -32,6 +35,7 @@
                        service.interceptors/http-request-in-handle-timing-interceptor
                        io.interceptors.authentication/identity-interceptor
                        (io.interceptors.authentication/required-roles-interceptor [:admin])
+                       interceptors.student/student-resource-existence-interceptor-check
                        diplomat.http-server.student/retract-student!]
               :route-name :retract-student]
 
@@ -40,6 +44,7 @@
                     service.interceptors/http-request-in-handle-timing-interceptor
                     io.interceptors.authentication/identity-interceptor
                     (io.interceptors.authentication/required-roles-interceptor [:admin])
+                    interceptors.menu/menu-resource-existence-interceptor-check
                     diplomat.http-server.student/fetch-students-by-reservations-menu]
               :route-name :fetch-students-by-menu-reservations]
 
@@ -57,6 +62,7 @@
                        service.interceptors/http-request-in-handle-timing-interceptor
                        io.interceptors.authentication/identity-interceptor
                        (io.interceptors.authentication/required-roles-interceptor [:admin])
+                       interceptors.menu/menu-resource-existence-interceptor-check
                        diplomat.http-server.menu/retract-menu!]
               :route-name :retract-menu]
 
@@ -88,18 +94,21 @@
              ["/api/reservations/:reservation-id"
               :delete [traceability/with-correlation-id-interceptor
                        service.interceptors/http-request-in-handle-timing-interceptor
+                       interceptors.reservation/reservation-resource-existence-interceptor-check
                        diplomat.http-server.reservation/retract-reservation!]
               :route-name :retract-reservation]
 
              ["/api/reservations/:reservation-id"
               :get [traceability/with-correlation-id-interceptor
                     service.interceptors/http-request-in-handle-timing-interceptor
+                    interceptors.reservation/reservation-resource-existence-interceptor-check
                     diplomat.http-server.reservation/fetch-reservation]
               :route-name :fetch-one-reservation]
 
              ["/api/reservations-by-menu/:menu-id"
               :get [traceability/with-correlation-id-interceptor
                     service.interceptors/http-request-in-handle-timing-interceptor
+                    interceptors.menu/menu-resource-existence-interceptor-check
                     diplomat.http-server.reservation/fetch-reservations-by-menu]
               :route-name :fetch-reservations-by-menu]
 

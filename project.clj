@@ -19,6 +19,7 @@
                  [net.clojars.macielti/porteiro-component "0.4.2"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
                  [net.clojars.macielti/new-relic-component "0.2.0"]
+                 [net.clojars.macielti/sqlite-component "0.1.0"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.15"]
