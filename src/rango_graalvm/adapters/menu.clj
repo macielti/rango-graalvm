@@ -3,7 +3,6 @@
             [rango-graalvm.models.menu :as models.menu]
             [rango-graalvm.wire.in.menu :as wire.in.menu]
             [rango-graalvm.wire.out.menu :as wire.out.menu]
-            [rango-graalvm.wire.postgresql.menu :as wire.postgresql.menu]
             [schema.core :as s])
   (:import (java.util UUID)))
 
@@ -20,13 +19,6 @@
    :reference-date (str reference-date)
    :description    description
    :created-at     (str created-at)})
-
-(s/defn postgresql->internal :- models.menu/Menu
-  [{:keys [] :as menu} :- wire.postgresql.menu/Menu]
-  {:menu/id             (:id menu)
-   :menu/reference-date (:reference_date menu)
-   :menu/description    (:description menu)
-   :menu/created-at     (:created_at menu)})
 
 (s/defn sqlite->internal :- models.menu/Menu
   [{:menus/keys [id reference_date description created_at]}]

@@ -22,11 +22,3 @@
                  :description    string?
                  :created-at     string?}
                 (adapters.menu/internal->wire fixtures.menu/menu)))))
-
-(s/deftest postgresql->internal-test
-  (testing "That we can internalize a postgresql Menu"
-    (is (match? {:menu/id             uuid?
-                 :menu/reference-date jt/local-date?
-                 :menu/description    string?
-                 :menu/created-at     jt/local-date-time?}
-                (adapters.menu/postgresql->internal fixtures.menu/postgresql-menu)))))

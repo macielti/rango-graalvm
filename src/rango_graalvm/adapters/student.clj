@@ -4,7 +4,6 @@
             [rango-graalvm.models.sudent :as models.student]
             [rango-graalvm.wire.in.student :as wire.in.student]
             [rango-graalvm.wire.out.student :as wire.out.student]
-            [rango-graalvm.wire.postgresql.student :as wire.postgresql.student]
             [schema.core :as s])
   (:import (java.util UUID)))
 
@@ -23,14 +22,6 @@
    :name       name
    :class      (clojure.core/name class)
    :created-at (str created-at)})
-
-(s/defn postgresql->internal :- models.student/Student
-  [{:keys [id code name class created_at]} :- wire.postgresql.student/Student]
-  {:student/id         id
-   :student/code       code
-   :student/name       name
-   :student/class      (csk/->kebab-case-keyword class)
-   :student/created-at created_at})
 
 (s/defn sqlite->internal :- models.student/Student
   [{:students/keys [id code name class created_at]}]
