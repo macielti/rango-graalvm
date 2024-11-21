@@ -30,7 +30,7 @@
 
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
-                   :dependencies   [[net.clojars.macielti/common-test-clj "3.1.1"]
+                   :dependencies   [[net.clojars.macielti/common-test-clj "3.1.2"]
                                     [danlentz/clj-uuid "0.2.0"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
