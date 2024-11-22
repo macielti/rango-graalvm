@@ -111,3 +111,22 @@
                                                            "Authorization" (str "Bearer " token)})]
     {:status status
      :body   (json/decode body true)}))
+
+(defn retract-menu
+  [menu-id
+   token
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :delete (str "/api/menus/" menu-id)
+                                                 :headers {"Content-Type"  "application/json"
+                                                           "Authorization" (str "Bearer " token)})]
+    {:status status
+     :body   (json/decode body true)}))
+
+(defn fetch-all-menus
+  [service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get "/api/menus"
+                                                 :headers {"Content-Type" "application/json"})]
+    {:status status
+     :body   (json/decode body true)}))
