@@ -62,3 +62,25 @@
                   (http/fetch-all-menus service-fn))))
 
     (ig/halt! system)))
+
+(s/deftest fetch-all-menus-test
+  (let [system (ig/init components/config-test)
+        service-fn (-> system ::component.service/service :io.pedestal.http/service-fn)
+        token (-> (http/authenticate-admin {:customer {:username "admin" :password "da3bf409"}} service-fn)
+                  :body :token)
+        {menu-id :id} (-> (http/create-menu {:menu fixtures.menu/wire-in-menu} token service-fn) :body :menu)
+        _ (http/create-menu {:menu (helpers.schema/generate wire.in.menu/Menu {:reference-date "2024-02-01"})} token service-fn)]
+
+    (testing "Admin is authenticated"
+      (is (string? token)))
+
+    (testing "Menu was created"
+      (is (clj-uuid/uuid-string? menu-id)))
+
+    (testing "Fetch all menus"
+      (is (match? {:status 200
+                   :body   {:menus [{:id menu-id}
+                                    {:id clj-uuid/uuid-string?}]}}
+                  (http/fetch-all-menus service-fn))))
+
+    (ig/halt! system)))
