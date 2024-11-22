@@ -6,9 +6,11 @@
 
 (def student-id (random-uuid))
 (def student-code "f2f203e4")
+(def student-name "Manuel Gomes")
 
 (s/def wire-in-student :- wire.in.student/Student
-  (helpers.schema/generate wire.in.student/Student {}))
+  (helpers.schema/generate wire.in.student/Student {:code student-code
+                                                    :name student-name}))
 
 (s/def student :- models.student/Student
   (helpers.schema/generate models.student/Student {:student/id   student-id

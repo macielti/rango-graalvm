@@ -79,3 +79,35 @@
                                                  :get (str "/api/reservations/" reservation-id))]
     {:status status
      :body   (json/decode body true)}))
+
+(defn fetch-all-students
+  [token
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get "/api/students"
+                                                 :headers {"Content-Type"  "application/json"
+                                                           "Authorization" (str "Bearer " token)})]
+    {:status status
+     :body   (json/decode body true)}))
+
+(defn delete-one-student
+  [student-id
+   token
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :delete (str "/api/students/" student-id)
+                                                 :headers {"Content-Type"  "application/json"
+                                                           "Authorization" (str "Bearer " token)})]
+    {:status status
+     :body   (json/decode body true)}))
+
+(defn fetch-students-that-has-reservation-for-a-menu
+  [menu-id
+   token
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get (str "/api/students-by-menu-reservations/" menu-id)
+                                                 :headers {"Content-Type"  "application/json"
+                                                           "Authorization" (str "Bearer " token)})]
+    {:status status
+     :body   (json/decode body true)}))
