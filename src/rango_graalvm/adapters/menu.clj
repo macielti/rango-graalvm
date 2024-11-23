@@ -3,6 +3,7 @@
             [rango-graalvm.models.menu :as models.menu]
             [rango-graalvm.wire.in.menu :as wire.in.menu]
             [rango-graalvm.wire.out.menu :as wire.out.menu]
+            [rango-graalvm.wire.sqlite.menu :as wire.sqlite.menu]
             [schema.core :as s])
   (:import (java.util UUID)))
 
@@ -21,7 +22,7 @@
    :created-at     (str created-at)})
 
 (s/defn sqlite->internal :- models.menu/Menu
-  [{:menus/keys [id reference_date description created_at]}]
+  [{:menus/keys [id reference_date description created_at]} :- wire.sqlite.menu/Menu]
   {:menu/id             (UUID/fromString id)
    :menu/reference-date (jt/local-date reference_date)
    :menu/description    description

@@ -22,3 +22,11 @@
                  :description    string?
                  :created-at     string?}
                 (adapters.menu/internal->wire fixtures.menu/menu)))))
+
+(s/deftest sqlite-to-internal-test
+  (testing "Sqlite Menu to internal Menu"
+    (is (match? {:menu/created-at     jt/local-date-time?
+                 :menu/description    fixtures.menu/menu-description
+                 :menu/id             fixtures.menu/menu-id
+                 :menu/reference-date jt/local-date?}
+                (adapters.menu/sqlite->internal fixtures.menu/sqlite-menu)))))

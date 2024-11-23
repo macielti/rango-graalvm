@@ -4,6 +4,7 @@
             [rango-graalvm.models.sudent :as models.student]
             [rango-graalvm.wire.in.student :as wire.in.student]
             [rango-graalvm.wire.out.student :as wire.out.student]
+            [rango-graalvm.wire.sqlite.student :as wire.sqlite.student]
             [schema.core :as s])
   (:import (java.util UUID)))
 
@@ -24,7 +25,7 @@
    :created-at (str created-at)})
 
 (s/defn sqlite->internal :- models.student/Student
-  [{:students/keys [id code name class created_at]}]
+  [{:students/keys [id code name class created_at]} :- wire.sqlite.student/Student]
   {:student/id         (UUID/fromString id)
    :student/code       code
    :student/name       name

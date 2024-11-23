@@ -3,9 +3,9 @@
             [schema.core :as s]))
 
 (def menu
-  {:id             schema.extensions/UuidWire
-   :reference_date schema.extensions/LocalDateWire
-   :description    s/Str
-   :created_at     schema.extensions/LocalDateTimeWire})
+  {:menus/id             schema.extensions/UuidWire
+   :menus/reference_date schema.extensions/LocalDateWire
+   :menus/description    s/Str
+   :menus/created_at     schema.extensions/LocalDateTimeWire})
 
 (s/defschema Menu menu)
