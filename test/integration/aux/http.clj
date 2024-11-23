@@ -130,3 +130,12 @@
                                                  :headers {"Content-Type" "application/json"})]
     {:status status
      :body   (json/decode body true)}))
+
+(defn fetch-reservations-by-menu
+  [menu-id
+   service-fn]
+  (let [{:keys [body status]} (test/response-for service-fn
+                                                 :get (str "/api/reservations-by-menu/" menu-id)
+                                                 :headers {"Content-Type" "application/json"})]
+    {:status status
+     :body   (json/decode body true)}))
