@@ -10,7 +10,7 @@
   :exclusions [amazonica]
 
   :dependencies [[org.clojure/clojure "1.12.0"]
-                 [net.clojars.macielti/common-clj "41.72.72"]
+                 [net.clojars.macielti/common-clj "41.73.73"]
                  [net.clojars.macielti/http-client-component "0.1.0"]
                  [io.pedestal/pedestal.service "0.7.2"]
                  [io.pedestal/pedestal.jetty "0.7.2"]
@@ -30,7 +30,7 @@
 
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
-                   :dependencies   [[net.clojars.macielti/common-test-clj "3.1.2"]
+                   :dependencies   [[net.clojars.macielti/common-test-clj "3.2.3"]
                                     [danlentz/clj-uuid "0.2.0"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]

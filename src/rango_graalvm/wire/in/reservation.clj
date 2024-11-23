@@ -1,8 +1,9 @@
 (ns rango-graalvm.wire.in.reservation
-  (:require [schema.core :as s]))
+  (:require [common-clj.schema.extensions :as schema.extensions]
+            [schema.core :as s]))
 
 (def reservation
-  {:menu-id      s/Str
+  {:menu-id      schema.extensions/UuidWire
    :student-code s/Str})
 
 (s/defschema Reservation reservation)
