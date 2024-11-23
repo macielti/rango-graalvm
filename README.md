@@ -9,6 +9,8 @@ flowchart TD
         LB -.-> Db[(SQLite)]
 
     end
+    LB -.->|logs| LOGS(New Relic)
+    LB -.->|metrics| MT(Grafana Cloud)
 ```
 
 ## License
