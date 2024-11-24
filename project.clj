@@ -19,11 +19,12 @@
                  [net.clojars.macielti/porteiro-component "0.4.2"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
                  [net.clojars.macielti/new-relic-component "0.2.0"]
-                 [net.clojars.macielti/sqlite-component "0.1.0"]
+                 [net.clojars.macielti/sqlite-component "1.1.0"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.15"]
                                     [com.github.liquidz/antq "RELEASE"]
+                                    [migratus-lein "0.7.3"]
                                     [lein-shell "0.5.0"]]
 
                    :resource-paths ["resources" "test/resources/"]
@@ -34,9 +35,13 @@
                                     [danlentz/clj-uuid "0.2.0"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
-                                    [com.github.igrishaev/pg2-migration "0.1.21"]]
+                                    [com.github.igrishaev/pg2-migration "0.1.21"]
+                                    [migratus "1.6.3"]]
 
                    :injections     [(require 'hashp.core)]
+
+                   :migratus       {:store         :database
+                                    :migration-dir "migrations/"}
 
                    :repl-options   {:init-ns rango-graalvm.components}
 

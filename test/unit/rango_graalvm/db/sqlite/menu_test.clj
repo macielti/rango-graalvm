@@ -5,14 +5,14 @@
             [fixtures.menu]
             [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
-            [rango-graalvm.db.sqlite.config :as sqlite.config]
+            [aux.components]
             [rango-graalvm.db.sqlite.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
             [schema.test :as s]))
 
 (s/deftest insert-test
   (testing "That we are able to insert a menu into the database"
-    (let [database (component.sqlite-mock/sqlite-unit-mock sqlite.config/schemas)]
+    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
       (is (match? {:menu/id             fixtures.menu/menu-id
                    :menu/created-at     jt/local-date-time?
                    :menu/description    fixtures.menu/menu-description
@@ -21,7 +21,7 @@
 
 (s/deftest lookup-test
   (testing "Should be able to query a menu by its id"
-    (let [database (component.sqlite-mock/sqlite-unit-mock sqlite.config/schemas)]
+    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
       (database.menu/insert! fixtures.menu/menu database)
       (is (match? {:menu/id             fixtures.menu/menu-id
                    :menu/created-at     jt/local-date-time?
@@ -33,7 +33,7 @@
 
 (s/deftest all-test
   (testing "Should return all menus"
-    (let [database (component.sqlite-mock/sqlite-unit-mock sqlite.config/schemas)]
+    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
       (database.menu/insert! (test.helper.schema/generate models.menu/Menu {}) database)
       (database.menu/insert! (test.helper.schema/generate models.menu/Menu {}) database)
       (database.menu/insert! (test.helper.schema/generate models.menu/Menu {}) database)
@@ -45,7 +45,7 @@
 
 (s/deftest retract-test
   (testing "Should return all menus"
-    (let [database (component.sqlite-mock/sqlite-unit-mock sqlite.config/schemas)]
+    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
       (database.menu/insert! fixtures.menu/menu database)
       (database.menu/insert! (test.helper.schema/generate models.menu/Menu {}) database)
       (database.menu/insert! (test.helper.schema/generate models.menu/Menu {}) database)

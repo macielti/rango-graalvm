@@ -8,7 +8,6 @@
             [new-relic-component.core :as component.new-relic]
             [porteiro-component.admin-component :as porteiro.admin]
             [porteiro-component.diplomat.http-server :as porteiro.diplomat.http-server]
-            [rango-graalvm.db.sqlite.config :as sqlite.config]
             [rango-graalvm.diplomat.http-server :as diplomat.http-server]
             [service-component.core :as component.service]
             [sqlite-component.core :as component.sqlite]
@@ -25,8 +24,7 @@
                                                      :prometheus (ig/ref ::component.prometheus/prometheus)}}
    ::component.new-relic/new-relic     {:components {:config      (ig/ref ::component.config/config)
                                                      :http-client (ig/ref ::component.http-client/http-client)}}
-   ::component.sqlite/sqlite           {:schemas    sqlite.config/schemas
-                                        :components {:config (ig/ref ::component.config/config)}}
+   ::component.sqlite/sqlite           {:components {:config (ig/ref ::component.config/config)}}
    ::porteiro.admin/admin              {:components {:config (ig/ref ::component.config/config)
                                                      :sqlite (ig/ref ::component.sqlite/sqlite)}}
    ::component.routes/routes           {:routes (concat diplomat.http-server/routes porteiro.diplomat.http-server/routes)}

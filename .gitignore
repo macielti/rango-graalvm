@@ -11,12 +11,12 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
-/resources/config.edn
 /rango-graalvm.iml
-/rango_graalvm.iml
 /.clj-kondo/.cache/
 /.lsp/.cache/
-/resources/migration.config.edn
 /.idea
 /.clj-kondo/imports/
 /resources/rango-ceti-fausto-lustosa.db
+/resources/migration.config.edn
+/resources/config.edn
+/resources/config.example.edn
