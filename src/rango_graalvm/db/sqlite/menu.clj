@@ -8,11 +8,11 @@
   [{:menu/keys [id reference-date description created-at]} :- models.menu/Menu
    database]
   (with-open [conn (jdbc/get-connection database)]
-    #p (-> (jdbc/execute! conn ["INSERT INTO menus (id, reference_date, description, created_at) VALUES (?, ?, ?, ?)
+    (-> (jdbc/execute! conn ["INSERT INTO menus (id, reference_date, description, created_at) VALUES (?, ?, ?, ?)
                           returning *"
                              (str id) reference-date description created-at])
         first
-        #_adapters.menu/sqlite->internal)))
+        adapters.menu/sqlite->internal)))
 
 (s/defn lookup :- (s/maybe models.menu/Menu)
   [menu-id :- s/Uuid
