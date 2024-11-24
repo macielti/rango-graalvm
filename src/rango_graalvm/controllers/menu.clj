@@ -6,9 +6,7 @@
 (s/defn create! :- models.menu/Menu
   [menu :- models.menu/Menu
    database]
-  (try (database.menu/insert! menu database)
-       (catch Exception e
-         #p e)))
+  (database.menu/insert! menu database))
 
 (s/defn fetch-one :- models.menu/Menu
   [menu-id :- s/Uuid
