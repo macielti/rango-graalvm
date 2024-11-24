@@ -6,7 +6,7 @@
 (s/defn create! :- models.menu/Menu
   [menu :- models.menu/Menu
    database]
-  #p (database.menu/insert! menu database))
+  (database.menu/insert! menu database))
 
 (s/defn fetch-one :- models.menu/Menu
   [menu-id :- s/Uuid
