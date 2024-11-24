@@ -7,9 +7,8 @@
 (s/defn create-menu!
   [{{:keys [menu]}   :json-params
     {:keys [sqlite]} :components}]
-  #p menu
   {:status 200
-   :body   {:menu (-> (adapters.menu/wire->internal menu)
+   :body   {:menu (-> #p (adapters.menu/wire->internal menu)
                       (controllers.menu/create! sqlite)
                       adapters.menu/internal->wire)}})
 
