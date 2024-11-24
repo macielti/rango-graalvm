@@ -1,5 +1,6 @@
 (ns rango-graalvm.db.sqlite.student-test
-  (:require [clojure.test :refer [is testing]]
+  (:require [aux.components]
+            [clojure.test :refer [is testing]]
             [common-test-clj.component.sqlite-mock :as component.sqlite-mock]
             [common-test-clj.helpers.schema :as test.helper.schema]
             [fixtures.menu]
@@ -7,7 +8,6 @@
             [fixtures.student]
             [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
-            [aux.components]
             [rango-graalvm.db.sqlite.reservation :as database.reservation]
             [rango-graalvm.db.sqlite.student :as database.student]
             [rango-graalvm.models.reservation :as models.reservation]

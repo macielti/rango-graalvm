@@ -1,11 +1,11 @@
 (ns rango-graalvm.db.sqlite.menu-test
-  (:require [clojure.test :refer [is testing]]
+  (:require [aux.components]
+            [clojure.test :refer [is testing]]
             [common-test-clj.component.sqlite-mock :as component.sqlite-mock]
             [common-test-clj.helpers.schema :as test.helper.schema]
             [fixtures.menu]
             [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
-            [aux.components]
             [rango-graalvm.db.sqlite.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
             [schema.test :as s]))
