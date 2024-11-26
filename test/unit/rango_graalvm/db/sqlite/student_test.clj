@@ -16,54 +16,54 @@
 
 (s/deftest insert-test
   (testing "Should insert a Student entity to database"
-    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
+    (let [database-conn (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
       (is (match? {:student/id         fixtures.student/student-id
                    :student/code       fixtures.student/student-code
                    :student/name       string?
                    :student/class      keyword?
                    :student/created-at jt/local-date-time?}
-                  (database.student/insert! fixtures.student/student database))))))
+                  (database.student/insert! fixtures.student/student database-conn))))))
 
 (s/deftest lookup-by-code-test
   (testing "Should be able to query a student by code"
-    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
-      (database.student/insert! fixtures.student/student database)
+    (let [database-conn (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
+      (database.student/insert! fixtures.student/student database-conn)
 
       (is (match? {:student/code fixtures.student/student-code}
-                  (database.student/lookup-by-code fixtures.student/student-code database)))
+                  (database.student/lookup-by-code fixtures.student/student-code database-conn)))
 
-      (is (nil? (database.student/lookup-by-code "8c045cae" database))))))
+      (is (nil? (database.student/lookup-by-code "8c045cae" database-conn))))))
 
 (s/deftest all-test
   (testing "Should be able to query all students"
-    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
-      (database.student/insert! fixtures.student/student database)
-      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database)
-      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database)
+    (let [database-conn (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
+      (database.student/insert! fixtures.student/student database-conn)
+      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database-conn)
+      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database-conn)
 
       (is (match? [{:student/code fixtures.student/student-code}
                    {:student/code string?}
                    {:student/code string?}]
-                  (database.student/all database))))))
+                  (database.student/all database-conn))))))
 
 (s/deftest by-menu-reservation-test
   (testing "Should be able to query students by menu reservation"
-    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
-      (database.student/insert! fixtures.student/student database)
-      (database.reservation/insert! (test.helper.schema/generate models.reservation/Reservation fixtures.reservation/reservation) database)
-      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database)
-      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database)
+    (let [database-conn (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
+      (database.student/insert! fixtures.student/student database-conn)
+      (database.reservation/insert! (test.helper.schema/generate models.reservation/Reservation fixtures.reservation/reservation) database-conn)
+      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database-conn)
+      (database.student/insert! (test.helper.schema/generate models.student/Student {}) database-conn)
 
       (is (match? [{:student/code fixtures.student/student-code}]
-                  (database.student/by-menu-reservation fixtures.menu/menu-id database))))))
+                  (database.student/by-menu-reservation fixtures.menu/menu-id database-conn))))))
 
 (s/deftest retract-test
   (testing "Should be able to retract a student"
-    (let [database (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
-      (database.student/insert! fixtures.student/student database)
+    (let [database-conn (component.sqlite-mock/sqlite-unit-mock aux.components/schemas)]
+      (database.student/insert! fixtures.student/student database-conn)
 
       (is (match? [{:next.jdbc/update-count 1}]
-                  (database.student/retract! fixtures.student/student-id database)))
+                  (database.student/retract! fixtures.student/student-id database-conn)))
 
       (is (match? []
-                  (database.student/all database))))))
+                  (database.student/all database-conn))))))

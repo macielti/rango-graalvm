@@ -16,10 +16,10 @@
                  [io.pedestal/pedestal.jetty "0.7.2"]
                  [io.pedestal/pedestal.error "0.7.2"]
                  [net.clojars.macielti/service-component "2.4.2"]
-                 [net.clojars.macielti/porteiro-component "0.4.2"]
+                 [net.clojars.macielti/porteiro-component "0.5.2"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
                  [net.clojars.macielti/new-relic-component "0.2.0"]
-                 [net.clojars.macielti/sqlite-component "1.1.0"]
+                 [net.clojars.macielti/sqlite-component "2.1.1"]
                  [com.taoensso/timbre "6.6.1"]]
 
   :profiles {:dev {:plugins        [[com.github.clojure-lsp/lein-clojure-lsp "1.4.15"]
@@ -31,7 +31,7 @@
 
                    :test-paths     ["test/unit" "test/integration" "test/helpers"]
 
-                   :dependencies   [[net.clojars.macielti/common-test-clj "3.2.3"]
+                   :dependencies   [[net.clojars.macielti/common-test-clj "4.2.3"]
                                     [danlentz/clj-uuid "0.2.0"]
                                     [hashp "0.2.2"]
                                     [nubank/matcher-combinators "3.9.1"]
