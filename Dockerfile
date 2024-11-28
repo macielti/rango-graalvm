@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 
 RUN lein do clean, uberjar, native
 
-FROM gcr.io/distroless/base:latest
+FROM scratch
 
 WORKDIR /app
 
