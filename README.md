@@ -4,9 +4,8 @@ Rango is a REST API for school canteen management.
 
 ```mermaid
 flowchart TD
-    G(Front End) -.-> LB(API)
     subgraph Backend
-        LB -.-> Db[(SQLite)]
+        LB(REST API) -.-> Db[(SQLite)]
 
     end
     LB -.->|logs| LOGS(New Relic)
