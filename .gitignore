@@ -20,4 +20,3 @@ pom.xml.asc
 /resources/migration.config.edn
 /resources/config.edn
 /resources/config.example.edn
-/dev-resources/gatling/gatling-maven-plugin-demo-scala/
