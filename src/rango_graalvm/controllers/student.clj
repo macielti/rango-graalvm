@@ -1,5 +1,5 @@
 (ns rango-graalvm.controllers.student
-  (:require [rango-graalvm.db.postgresql.student :as database.student]
+  (:require [rango-graalvm.db.sqlite.student :as database.student]
             [rango-graalvm.models.sudent :as models.student]
             [schema.core :as s]))
 

@@ -24,3 +24,12 @@
                  :class      string?
                  :created-at string?}
                 (adapters.student/internal->wire fixtures.student/student)))))
+
+(s/deftest sqlite-to-internal-test
+  (testing "That we can convert a sqlite Student to a internal Student"
+    (is (match? {:student/id         fixtures.student/student-id
+                 :student/code       fixtures.student/student-code
+                 :student/name       fixtures.student/student-name
+                 :student/class      keyword?
+                 :student/created-at jt/local-date-time?}
+                (adapters.student/sqlite->internal fixtures.student/sqlite-student)))))

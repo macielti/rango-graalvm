@@ -1,5 +1,5 @@
 (ns rango-graalvm.interceptors.student
-  (:require [postgresql-component.interceptors :as interceptors.postgresql])
+  (:require [sqlite-component.interceptors :as interceptors.sqlite])
   (:import (java.util UUID)))
 
 (defn student-resource-identifier-fn
@@ -7,13 +7,13 @@
   (-> path-params :student-id UUID/fromString))
 
 (def student-resource-existence-interceptor-check
-  (interceptors.postgresql/resource-existence-check-interceptor student-resource-identifier-fn
-                                                                "SELECT * FROM students WHERE id = $1"))
+  (interceptors.sqlite/resource-existence-check-interceptor student-resource-identifier-fn
+                                                            "SELECT * FROM students WHERE id = ?"))
 
 (defn student-resource-identifier-fn-for-reservation-creation
   [{{:keys [json-params]} :request}]
   (-> json-params :reservation :student-code))
 
 (def student-resource-existence-interceptor-check-for-reservation-creation
-  (interceptors.postgresql/resource-existence-check-interceptor student-resource-identifier-fn-for-reservation-creation
-                                                                "SELECT * FROM students WHERE code = $1"))
+  (interceptors.sqlite/resource-existence-check-interceptor student-resource-identifier-fn-for-reservation-creation
+                                                            "SELECT * FROM students WHERE code = ?"))

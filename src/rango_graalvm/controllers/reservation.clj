@@ -1,7 +1,7 @@
 (ns rango-graalvm.controllers.reservation
-  (:require [rango-graalvm.db.postgresql.menu :as database.menu]
-            [rango-graalvm.db.postgresql.reservation :as database.reservation]
-            [rango-graalvm.db.postgresql.student :as database.student]
+  (:require [rango-graalvm.db.sqlite.menu :as database.menu]
+            [rango-graalvm.db.sqlite.reservation :as database.reservation]
+            [rango-graalvm.db.sqlite.student :as database.student]
             [rango-graalvm.logic.reservation :as logic.reservation]
             [rango-graalvm.models.reservation :as models.reservation]
             [schema.core :as s]))
@@ -37,4 +37,4 @@
    database]
   (-> (database.student/lookup-by-code student-code database)
       :student/id
-      (database.reservation/lookup-by-student-and-menu menu-id database)))
+      (database.reservation/fetch-student-reservation-by-menu menu-id database)))
