@@ -16,7 +16,6 @@
         first
         adapters.menu/postgresql->internal)))
 
-
 (s/defn lookup :- (s/maybe models.menu/Menu)
   [menu-id :- s/Uuid
    postgresql-pool]

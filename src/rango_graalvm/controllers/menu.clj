@@ -1,5 +1,5 @@
 (ns rango-graalvm.controllers.menu
-  (:require [rango-graalvm.db.sqlite.menu :as database.menu]
+  (:require [rango-graalvm.db.postgresql.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
             [schema.core :as s]))
 

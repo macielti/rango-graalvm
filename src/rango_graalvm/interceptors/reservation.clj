@@ -1,5 +1,5 @@
 (ns rango-graalvm.interceptors.reservation
-  (:require [sqlite-component.interceptors :as interceptors.sqlite])
+  (:require [postgresql-component.interceptors :as interceptors.postgresql])
   (:import (java.util UUID)))
 
 (defn reservation-resource-identifier-fn
@@ -7,5 +7,5 @@
   (-> path-params :reservation-id UUID/fromString))
 
 (def reservation-resource-existence-interceptor-check
-  (interceptors.sqlite/resource-existence-check-interceptor reservation-resource-identifier-fn
-                                                            "SELECT * FROM reservations WHERE id = ?"))
+  (interceptors.postgresql/resource-existence-check-interceptor reservation-resource-identifier-fn
+                                                                "SELECT * FROM reservations WHERE id = $1"))

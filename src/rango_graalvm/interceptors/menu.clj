@@ -1,5 +1,5 @@
 (ns rango-graalvm.interceptors.menu
-  (:require [sqlite-component.interceptors :as interceptors.sqlite])
+  (:require [postgresql-component.interceptors :as interceptors.postgresql])
   (:import (java.util UUID)))
 
 (defn menu-resource-identifier-fn
@@ -7,5 +7,5 @@
   (-> path-params :menu-id UUID/fromString))
 
 (def menu-resource-existence-interceptor-check
-  (interceptors.sqlite/resource-existence-check-interceptor menu-resource-identifier-fn
-                                                            "SELECT * FROM menus WHERE id = ?"))
+  (interceptors.postgresql/resource-existence-check-interceptor menu-resource-identifier-fn
+                                                                "SELECT * FROM menus WHERE id = $1"))

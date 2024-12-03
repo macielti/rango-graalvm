@@ -1,15 +1,14 @@
 (ns rango-graalvm.db.postgresql.menu-test
-  (:require [clojure.test :refer :all]
+  (:require [aux.components]
+            [clojure.test :refer [is testing]]
             [common-test-clj.component.postgresql-mock :as component.postgresql-mock]
             [common-test-clj.helpers.schema :as test.helper.schema]
-            [java-time.api :as jt]
             [fixtures.menu]
-            [aux.components]
-            [rango-graalvm.db.postgresql.menu :as database.menu]
+            [java-time.api :as jt]
             [matcher-combinators.test :refer [match?]]
+            [rango-graalvm.db.postgresql.menu :as database.menu]
             [rango-graalvm.models.menu :as models.menu]
             [schema.test :as s]))
-
 
 (s/deftest insert-test
   (testing "Should insert a menu"
@@ -38,7 +37,6 @@
                    {:menu/id uuid?}
                    {:menu/id uuid?}]
                   (database.menu/all conn))))))
-
 
 (s/deftest retract-test
   (testing "Should be able to retract a menu"
