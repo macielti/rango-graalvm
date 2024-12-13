@@ -18,6 +18,9 @@ You can run the application locally using Docker Compose.
 
 Navigate to the `dev-resources/local_deploy` directory and run the following command:
 
+You problably need to perform a docker login before running the command below (`docker login ghcr.io`).
+
+
 ```shell 
 docker compose up -d migratus
 ```
