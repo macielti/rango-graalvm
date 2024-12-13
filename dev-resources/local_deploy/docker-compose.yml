@@ -1,0 +1,30 @@
+services:
+
+  migratus:
+    image: ghcr.io/macielti/rango-graalvm:sha-8975afe
+    container_name: migratus
+    volumes:
+      - ./resources/migratus.config.edn:/app/resources/migratus.config.edn
+      - ./resources/migrations:/app/resources/migrations
+      - rango_sqlite_data:/app/data/
+    deploy:
+      resources:
+        limits:
+          memory: "25MB"
+
+  rango:
+    image: ghcr.io/macielti/rango-graalvm:sha-8975afe
+    container_name: rango
+    restart: unless-stopped
+    volumes:
+      - ./resources/config.edn:/app/resources/config.edn
+      - rango_sqlite_data:/app/data/
+    deploy:
+      resources:
+        limits:
+          memory: "25MB"
+    ports:
+      - "8080:8080"
+
+volumes:
+  rango_sqlite_data:

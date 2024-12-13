@@ -1,0 +1,4 @@
+{:store         :database
+ :migration-dir "migrations"
+ :db            {:dbtype "sqlite"
+                 :dbname "/app/data/rango-ceti-fausto-lustosa.db"}}
