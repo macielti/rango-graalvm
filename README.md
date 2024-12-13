@@ -12,6 +12,22 @@ flowchart TD
     LB -.->|metrics| MT(Grafana Cloud)
 ```
 
+## Local Deployment (Docker)
+
+You can run the application locally using Docker Compose.
+
+Navigate to the `dev-resources/local_deploy` directory and run the following command:
+
+```shell 
+docker compose up -d migratus
+```
+
+After the database is created, run the following command:
+
+```shell
+docker compose up -d rango
+```
+
 ## License
 
 Copyright © 2024 Bruno do Nascimento Maciel
