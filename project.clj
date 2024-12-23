@@ -58,6 +58,8 @@
 
                                                     "--enable-url-protocols=http,https"
 
+                                                    "-march=compatibility"
+
                                                     "--initialize-at-run-time=io.prometheus.client.Striped64"
 
                                                     "--initialize-at-build-time"
